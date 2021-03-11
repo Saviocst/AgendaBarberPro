@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Agenda Barber Pro</string>
+    <string name="title">Agenda Barber Pro</string>
+    <string name="agendar">Agendar</string>
+    <string name="list">Lista</string>
+    <string name="sair">Sair</string>
+    <string name="nova_funcionalidade">New</string>
+    <string name="name">Nome</string>
+    <string name="timer">Horas</string>
+    <string name="error_message">Preencha os campos vazios</string>
+
+    <string name="sucesso"> Bem Sucedido </string>
+    <string name="btn_ok"> OK </string>
+    <string name="btn_salvar"> SALVAR </string>
+    <string name="resultado">Conseguiu, Muito Bem Mano</string>
+    <string name="agedamento_confirm">Agendamento Concluido</string>
+
+    <string name="agedamento_confirm_db">Agendamento concluido com sucesso</string>
+    <string name="agedamento_error_db">Erro ao salvar o agendamento</string>
+
+
+
+
+
+</resources>

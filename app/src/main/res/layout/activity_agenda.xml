@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/draw_custom_sv"
+    tools:context=".AgendaActivity">
+
+    <LinearLayout
+        android:id="@+id/layout_logo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.1"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/logo_apk_agenda_sv"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title"
+            android:textColor="@color/white"
+            android:textSize="16sp"/>
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/edit_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_logo"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginRight="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="80dp"
+        android:hint="@string/name"
+        android:textColorHint="@color/white"
+        android:drawableLeft="@drawable/ic_user_sv"
+        android:background="@drawable/custom_user_bg_sv"
+        android:drawablePadding="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textColor="@color/white"
+        android:maxLength="20"
+        android:inputType="textCapWords"/>
+
+    <EditText
+        android:id="@+id/edit_timer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="@id/edit_name"
+        app:layout_constraintRight_toRightOf="@id/edit_name"
+        app:layout_constraintTop_toBottomOf="@id/edit_name"
+        app:layout_constraintHorizontal_bias="1.0"
+        android:layout_marginTop="16dp"
+        android:hint="@string/timer"
+        android:textColorHint="@color/white"
+        android:drawableLeft="@drawable/ic_timer_sv"
+        android:background="@drawable/custom_user_bg_sv"
+        android:drawablePadding="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textColor="@color/white"
+        android:maxLength="5"
+        android:inputType="number"/>
+
+    <Button
+        android:id="@+id/button_agendar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="@string/agendar"
+        android:textColor="@color/black"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@id/edit_timer"
+        app:layout_constraintRight_toRightOf="@id/edit_timer"
+        app:layout_constraintTop_toBottomOf="@id/edit_timer"
+        android:background="@drawable/custom_button_sv"
+        android:backgroundTint="@color/white"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
