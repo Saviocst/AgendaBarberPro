@@ -17,9 +17,12 @@
 
     <string name="agedamento_confirm_db">Agendamento concluido com sucesso</string>
     <string name="agedamento_error_db">Erro ao salvar o agendamento</string>
-
-
-
+    <string name="list_agend_client">Agendamento</string>
+    <string name="hora_clt">Hora</string>
+    <string name="hour_client">Hora:</string>
+    <string name="name_clt">Nome:</string>
+    <string name="sim">Sim</string>
+    <string name="nao">Não</string>
 
 
 </resources>

@@ -2,22 +2,23 @@ package com.example.agendabarberpro
 
 
 import android.app.AlertDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.widget.*
-import androidx.lifecycle.ViewModel
-import com.example.agendabarberpro.repository.AgendaRepository
 import com.muddzdev.styleabletoastlibrary.StyleableToast
 
 
 class AgendaActivity : AppCompatActivity() {
 
-    lateinit var buttonAgendar: Button
-    lateinit var editName: EditText
-    lateinit var editHoras: EditText
+    private lateinit var buttonAgendar: Button
+    private lateinit var editName: EditText
+    private lateinit var editHoras: EditText
+
+    //internal var bdHelper = DataBaseHelper(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,10 +37,6 @@ class AgendaActivity : AppCompatActivity() {
                     .show()
                 return@setOnClickListener
             }
-
-            //val name = editName.text.toString()
-            //val time = editHoras.text.toString()
-            //var resultd = result(name, time)
 
             dialogWindow()
         }
@@ -104,6 +101,8 @@ class AgendaActivity : AppCompatActivity() {
 
     }
 
+
+
     private fun dialogWindow(){
         val builder = AlertDialog.Builder(this, R.style.AlertDialogSv)
         val view = LayoutInflater.from(this).inflate(
@@ -126,7 +125,11 @@ class AgendaActivity : AppCompatActivity() {
 
         view.findViewById<Button>(R.id.button_ok).setOnClickListener { alertDialog.dismiss() }
 
-        view.findViewById<Button>(R.id.button_save).setOnClickListener { alertDialog.dismiss() }
+        view.findViewById<Button>(R.id.button_save).setOnClickListener {
+            settingstData()
+            openList()
+            clearEditText()
+        }
 
         if(alertDialog.window != null){
             alertDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
@@ -135,6 +138,44 @@ class AgendaActivity : AppCompatActivity() {
         alertDialog.show()
     }
 
+    private fun settingstData() {
+
+        val dataBase = DataBaseHelper.getInstancia(this)
+        var editId = 0
+
+        if (intent.extras != null) editId = intent.extras!!.getInt("editId", 0)
+
+        val calcId: Long = if (editId > 0){
+            dataBase!!.updateData(DataBaseHelper.TYPE_SCHEDULE, editName.text.toString(), editHoras.text.toString(), editId)
+        }else{
+            dataBase!!.insertData(DataBaseHelper.TYPE_SCHEDULE, editName.text.toString(), editHoras.text.toString())
+        }
+
+        if (calcId > 0 ){
+            Toast.makeText(this, "Salvo com Sucesso", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun openList(){
+        val intent = Intent(this, ListActivity::class.java)
+        intent.putExtra("type", DataBaseHelper.TYPE_SCHEDULE)
+        startActivity(intent)
+    }
+
+    //Função para exibir mensagens de confirmação
+
+    fun showToast(text: String){
+        Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
+    }
+
+    //Função de limpar camopos de texto do EditText
+
+    private fun clearEditText(){
+        editName.setText("")
+        editHoras.setText("")
+    }
+
+    //Função para validar dados
 
     private fun validate(): Boolean {
         if (editName.text.toString().isNotEmpty() && editHoras.text.toString().isNotEmpty()) {
