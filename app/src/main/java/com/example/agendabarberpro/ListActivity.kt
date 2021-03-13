@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.agendabarberpro.adapter.MainAdapter
 import com.example.agendabarberpro.model.EventClick
+import kotlinx.android.synthetic.main.activity_main.*
 
 class ListActivity : AppCompatActivity(), EventClick {
 
@@ -19,6 +20,9 @@ class ListActivity : AppCompatActivity(), EventClick {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
+
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val builder = intent.extras
 

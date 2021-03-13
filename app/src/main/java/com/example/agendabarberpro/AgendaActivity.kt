@@ -10,6 +10,7 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.widget.*
 import com.muddzdev.styleabletoastlibrary.StyleableToast
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class AgendaActivity : AppCompatActivity() {
@@ -23,6 +24,9 @@ class AgendaActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_agenda)
+
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         editName = findViewById(R.id.edit_name)
         editHoras = findViewById(R.id.edit_timer)

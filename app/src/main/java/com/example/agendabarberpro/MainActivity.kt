@@ -4,15 +4,19 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.cardview.widget.CardView
+import kotlinx.android.synthetic.main.activity_main.*
 
 private lateinit var cardAgendar: CardView
 private lateinit var cardSair: CardView
 private lateinit var cardList: CardView
 
+
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        //setSupportActionBar(toolbar)
 
         cardAgendar = findViewById(R.id.card_view_agendar)
         cardSair = findViewById(R.id.card_view_sair)

@@ -7,6 +7,25 @@
     android:background="@drawable/draw_custom_sv"
     tools:context=".MainActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/toolbar_style"
+        app:title="@string/agenda_barber"
+        app:titleTextColor="@color/white"
+        android:layout_margin="4dp"
+        android:elevation="3dp"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        tools:ignore="UnusedAttribute" />
+
+    <!--
     <TextView
         android:id="@+id/title_agenda"
         android:layout_width="wrap_content"
@@ -14,13 +33,14 @@
         android:layout_margin="12dp"
         android:text="@string/title"
         android:textColor="@color/black"
-        android:textSize="22sp"
-        android:textStyle="bold" />
-
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_below="@id/toolbar"/>
+        -->
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/title_agenda"
+        android:layout_below="@id/toolbar"
         android:layout_margin="20dp"
         android:layout_marginTop="20dp"
         android:columnCount="2"

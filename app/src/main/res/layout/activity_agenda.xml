@@ -7,6 +7,22 @@
     android:background="@drawable/draw_custom_sv"
     tools:context=".AgendaActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/toolbar_style"
+        app:title="@string/agenda_barber"
+        app:titleTextColor="@color/white"
+        android:layout_margin="4dp"
+        android:elevation="3dp"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:ignore="UnusedAttribute" />
+
     <LinearLayout
         android:id="@+id/layout_logo"
         android:layout_width="0dp"
