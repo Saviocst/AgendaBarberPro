@@ -18,6 +18,12 @@ class MainActivity : AppCompatActivity() {
 
         //setSupportActionBar(toolbar)
 
+        /*setSupportActionBar(toolbar)
+        if (supportActionBar != null){
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_sv)
+        }*/
+
         cardAgendar = findViewById(R.id.card_view_agendar)
         cardSair = findViewById(R.id.card_view_sair)
         cardList = findViewById(R.id.card_view_lista)

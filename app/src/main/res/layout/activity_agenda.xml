@@ -5,47 +5,48 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/draw_custom_sv"
+
     tools:context=".AgendaActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/toolbar_style"
-        app:title="@string/agenda_barber"
-        app:titleTextColor="@color/white"
         android:layout_margin="4dp"
+        android:background="@drawable/toolbar_style"
         android:elevation="3dp"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/agenda_barber"
+        app:titleTextColor="@color/white"
         tools:ignore="UnusedAttribute" />
 
     <LinearLayout
         android:id="@+id/layout_logo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.1"
+        android:layout_marginTop="25dp"
+        android:gravity="center"
         android:orientation="vertical"
-        android:gravity="center">
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintVertical_bias="0.1">
 
         <ImageView
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:src="@drawable/logo_apk_agenda_sv"/>
+            android:src="@drawable/logo_apk_agenda_sv" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/title"
-            android:textColor="@color/white"
-            android:textSize="16sp"/>
+            android:textColor="@color/orange_sv_logo"
+            android:textSize="16sp" />
 
     </LinearLayout>
 
@@ -53,61 +54,62 @@
         android:id="@+id/edit_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layout_logo"
-        app:layout_constraintHorizontal_bias="0.0"
-        android:layout_marginRight="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="80dp"
-        android:hint="@string/name"
-        android:textColorHint="@color/white"
-        android:drawableLeft="@drawable/ic_user_sv"
+        android:layout_marginRight="32dp"
         android:background="@drawable/custom_user_bg_sv"
+        android:drawableLeft="@drawable/ic_user_sv"
         android:drawablePadding="10dp"
+        android:hint="@string/name"
+        android:inputType="textCapWords"
+        android:maxLength="20"
         android:paddingLeft="20dp"
-        android:paddingRight="10dp"
         android:paddingTop="10dp"
+        android:paddingRight="10dp"
         android:paddingBottom="10dp"
         android:textColor="@color/white"
-        android:maxLength="20"
-        android:inputType="textCapWords"/>
+        android:textColorHint="@color/white"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_logo" />
 
     <EditText
         android:id="@+id/edit_timer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="@id/edit_name"
-        app:layout_constraintRight_toRightOf="@id/edit_name"
-        app:layout_constraintTop_toBottomOf="@id/edit_name"
-        app:layout_constraintHorizontal_bias="1.0"
         android:layout_marginTop="16dp"
-        android:hint="@string/timer"
-        android:textColorHint="@color/white"
-        android:drawableLeft="@drawable/ic_timer_sv"
         android:background="@drawable/custom_user_bg_sv"
+        android:drawableLeft="@drawable/ic_timer_sv"
         android:drawablePadding="10dp"
+        android:hint="@string/timer"
+        android:inputType="number"
+        android:maxLength="5"
         android:paddingLeft="20dp"
-        android:paddingRight="10dp"
         android:paddingTop="10dp"
+        android:paddingRight="10dp"
         android:paddingBottom="10dp"
         android:textColor="@color/white"
-        android:maxLength="5"
-        android:inputType="number"/>
+        android:textColorHint="@color/white"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="@id/edit_name"
+        app:layout_constraintRight_toRightOf="@id/edit_name"
+        app:layout_constraintTop_toBottomOf="@id/edit_name" />
 
     <Button
         android:id="@+id/button_agendar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
+        android:background="@drawable/custom_button_sv"
+        android:backgroundTint="@color/white"
         android:text="@string/agendar"
         android:textColor="@color/black"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="@id/edit_timer"
         app:layout_constraintRight_toRightOf="@id/edit_timer"
-        app:layout_constraintTop_toBottomOf="@id/edit_timer"
-        android:background="@drawable/custom_button_sv"
-        android:backgroundTint="@color/white"/>
-
+        app:layout_constraintTop_toBottomOf="@id/edit_timer" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+

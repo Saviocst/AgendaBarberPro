@@ -25,8 +25,12 @@ class AgendaActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_agenda)
 
+        // Toolbar Customizada
         setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        if (supportActionBar != null){
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_sv)
+        }
 
         editName = findViewById(R.id.edit_name)
         editHoras = findViewById(R.id.edit_timer)
