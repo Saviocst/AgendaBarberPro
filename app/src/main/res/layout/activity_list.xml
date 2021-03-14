@@ -10,7 +10,7 @@
         android:id="@+id/lista_recycler_agenda"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/lista_agenda_personalizada"
+        tools:listitem="@layout/list_custom_sv"
         tools:itemCount="3"/>
 
     <!-- simple_list_item_1 -->

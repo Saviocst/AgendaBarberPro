@@ -16,10 +16,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 class AgendaActivity : AppCompatActivity() {
 
     private lateinit var buttonAgendar: Button
-    private lateinit var editName: EditText
-    private lateinit var editHoras: EditText
-
-    //internal var bdHelper = DataBaseHelper(this)
+    lateinit var editName: EditText
+    lateinit var editHoras: EditText
+    lateinit var spinnerWeek: Spinner
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,13 +26,14 @@ class AgendaActivity : AppCompatActivity() {
 
         // Toolbar Customizada
         setSupportActionBar(toolbar)
-        if (supportActionBar != null){
+        if (supportActionBar != null) {
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
             supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_sv)
         }
 
         editName = findViewById(R.id.edit_name)
         editHoras = findViewById(R.id.edit_timer)
+        spinnerWeek = findViewById(R.id.spinner_week)
         buttonAgendar = findViewById(R.id.button_agendar)
 
 
@@ -64,7 +64,7 @@ class AgendaActivity : AppCompatActivity() {
                 // Quando o texto é alterado o onTextChange é chamado
                 // essa flag evita a chamada infinita desse metodo
 
-                if(isUpdating){
+                if (isUpdating) {
                     isUpdating = false
                     return
                 }
@@ -80,10 +80,10 @@ class AgendaActivity : AppCompatActivity() {
                 // Os parametros before e count dizem o tamanho
                 // anterior e atual da string digitada, se count > before é
                 // porque está digitando, caso contrario esta apagando
-                if (count > before){
+                if (count > before) {
 
                     // Se tem mais de 2 coloca o ponto
-                    if (str.length > 2){
+                    if (str.length > 2) {
                         str = "${str.substring(0, 2)}:${str.substring(2)}"
                     }
 
@@ -102,7 +102,12 @@ class AgendaActivity : AppCompatActivity() {
 
                     // Se estiver apagando posiciona o cursor no lugar correto
                     // Isso trata da deleção dos caracteres da máscara
-                    editHoras.setSelection(Math.max(0, Math.min(if (hasMask) start - before else start, str.length)))
+                    editHoras.setSelection(
+                        Math.max(
+                            0,
+                            Math.min(if (hasMask) start - before else start, str.length)
+                        )
+                    )
                 }
             }
         })
@@ -110,8 +115,7 @@ class AgendaActivity : AppCompatActivity() {
     }
 
 
-
-    private fun dialogWindow(){
+    private fun dialogWindow() {
         val builder = AlertDialog.Builder(this, R.style.AlertDialogSv)
         val view = LayoutInflater.from(this).inflate(
             R.layout.layout_dialog_result_custom, null
@@ -119,15 +123,18 @@ class AgendaActivity : AppCompatActivity() {
 
         builder.setView(view)
 
-        view.findViewById<TextView>(R.id.dialog_title_sv).text = resources.getString(R.string.agedamento_confirm)
+        view.findViewById<TextView>(R.id.dialog_title_sv).text =
+            resources.getString(R.string.agedamento_confirm)
 
-        view.findViewById<TextView>(R.id.result_agenda).text = result(editName.text.toString(), editHoras.text.toString())
+        view.findViewById<TextView>(R.id.result_agenda).text =
+            result(editName.text.toString(), editHoras.text.toString(), dayWeek())
         //view.findViewById<TextView>(R.id.result_agenda).text = resources.getString(R.string.resultado)
 
         view.findViewById<Button>(R.id.button_ok).text = resources.getString(R.string.btn_ok)
         view.findViewById<Button>(R.id.button_save).text = resources.getString(R.string.btn_salvar)
 
-        view.findViewById<ImageView>(R.id.dialog_image_sv).setImageResource(R.drawable.ic_dialog_done_sv)
+        view.findViewById<ImageView>(R.id.dialog_image_sv)
+            .setImageResource(R.drawable.ic_dialog_done_sv)
 
         val alertDialog: AlertDialog = builder.create()
 
@@ -139,7 +146,7 @@ class AgendaActivity : AppCompatActivity() {
             clearEditText()
         }
 
-        if(alertDialog.window != null){
+        if (alertDialog.window != null) {
             alertDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         }
 
@@ -153,18 +160,29 @@ class AgendaActivity : AppCompatActivity() {
 
         if (intent.extras != null) editId = intent.extras!!.getInt("editId", 0)
 
-        val calcId: Long = if (editId > 0){
-            dataBase!!.updateData(DataBaseHelper.TYPE_SCHEDULE, editName.text.toString(), editHoras.text.toString(), editId)
-        }else{
-            dataBase!!.insertData(DataBaseHelper.TYPE_SCHEDULE, editName.text.toString(), editHoras.text.toString())
+        val calcId: Long = if (editId > 0) {
+            dataBase!!.updateData(
+                DataBaseHelper.TYPE_SCHEDULE,
+                editName.text.toString(),
+                editHoras.text.toString(),
+                dayWeek(),
+                editId
+            )
+        } else {
+            dataBase!!.insertData(
+                DataBaseHelper.TYPE_SCHEDULE,
+                editName.text.toString(),
+                editHoras.text.toString(),
+                dayWeek()
+            )
         }
 
-        if (calcId > 0 ){
+        if (calcId > 0) {
             Toast.makeText(this, "Salvo com Sucesso", Toast.LENGTH_LONG).show()
         }
     }
 
-    private fun openList(){
+    private fun openList() {
         val intent = Intent(this, ListActivity::class.java)
         intent.putExtra("type", DataBaseHelper.TYPE_SCHEDULE)
         startActivity(intent)
@@ -172,16 +190,17 @@ class AgendaActivity : AppCompatActivity() {
 
     //Função para exibir mensagens de confirmação
 
-    fun showToast(text: String){
+    /*fun showToast(text: String){
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
-    }
+    }*/
 
     //Função de limpar camopos de texto do EditText
 
-    private fun clearEditText(){
+    private fun clearEditText() {
         editName.setText("")
         editHoras.setText("")
     }
+
 
     //Função para validar dados
 
@@ -192,8 +211,23 @@ class AgendaActivity : AppCompatActivity() {
         return false
     }
 
-    private fun result(name: String, time: String): String {
-        return "Cliente: $name \nHoras: $time"
+
+    fun dayWeek(): String {
+        return when (spinnerWeek.selectedItemPosition) {
+            0 -> "Domingo"
+            1 -> "Segunda-Feira"
+            2 -> "Terça-Feira"
+            3 -> "Quarta-Feira"
+            4 -> "Quinta-Feira"
+            5 -> "Sexta-Feira"
+            6 -> "Sabado"
+            else -> "Domingo"
+        }
+    }
+
+
+    private fun result(name: String, time: String, spinner: String): String {
+        return "Cliente: $name \nHoras: $time \nDia: $spinner"
     }
 
     /*private fun toastCustom(view: View){

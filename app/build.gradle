@@ -43,6 +43,9 @@ dependencies {
     implementation 'com.muddzdev:styleabletoast:2.0.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 
+    // Implements de animação
+    implementation 'com.airbnb.android:lottie:3.4.0'
+
     //Novo Implements
     //implementation'androidx.lifecycle:lifecycle-extensios:2.2.0'
     //implementation'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0'

@@ -11,12 +11,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.agendabarberpro.adapter.MainAdapter
 import com.example.agendabarberpro.model.EventClick
+import kotlinx.android.synthetic.main.activity_agenda.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.toolbar
 
 class ListActivity : AppCompatActivity(), EventClick {
 
     private val data: MutableList<DataBaseHelper.Companion.Cadastro> = ArrayList()
     private lateinit var rvMain: RecyclerView
+
+    internal val dbHelper = DataBaseHelper(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +50,7 @@ class ListActivity : AppCompatActivity(), EventClick {
         }
     }
 
-    override fun onClick(id: Int, type: String, name: String, hour: String) {
+    override fun onClick(id: Int, type: String, name: String, hour: String, day: String) {
         if (type == DataBaseHelper.TYPE_SCHEDULE){
 
             val alertEdit = AlertDialog.Builder(this)
@@ -79,4 +83,5 @@ class ListActivity : AppCompatActivity(), EventClick {
             .create()
         alertDelete.show()
     }
+
 }

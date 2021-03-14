@@ -9,15 +9,15 @@ import java.lang.Exception
 
 class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
     override fun onCreate(db: SQLiteDatabase?) {
-        db?.execSQL("CREATE TABLE $TABLE_NAME(ID INTEGER PRIMARY KEY,  TYPE TEXT, NAME TEXT, HOUR TEXT)")
+        db?.execSQL("CREATE TABLE $TABLE_NAME(ID INTEGER PRIMARY KEY,  TYPE TEXT, NAME TEXT, HOUR TEXT, DAY TEXT)")
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        //db?.execSQL("DROP TABLE IF EXISTS" + TABLE_NAME)
-        //onCreate(db)
+        db?.execSQL("DROP TABLE IF EXISTS $TABLE_NAME")
+        onCreate(db)
     }
 
-    fun insertData(type: String, name: String, hour: String) : Long {
+    fun insertData(type: String, name: String, hour: String, day: String) : Long {
         val db = writableDatabase
 
         db.beginTransaction()
@@ -31,6 +31,8 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
             values.put(COLUMN_2, type)
             values.put(COLUMN_3, name)
             values.put(COLUMN_4, hour)
+            values.put(COLUMN_5, day)
+
 
             calcId = db.insertOrThrow(TABLE_NAME, null, values)
             db.setTransactionSuccessful()
@@ -44,12 +46,10 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
             db.endTransaction()
         }
 
-
-
         return calcId
     }
 
-    fun updateData(type: String, name:String, hour: String, id: Int) : Long{
+    fun updateData(type: String, name:String, hour: String, day: String, id: Int) : Long{
         val db = writableDatabase
 
         db.beginTransaction()
@@ -63,6 +63,8 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
             values.put(COLUMN_2, type)
             values.put(COLUMN_3, name)
             values.put(COLUMN_4, hour)
+            values.put(COLUMN_5, day)
+
 
 
             calcId = db.update(TABLE_NAME, values, "ID = ? AND TYPE = ?", arrayOf(id.toString(), type)).toLong()
@@ -115,6 +117,8 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
                     cadastro.type = cursor.getString(cursor.getColumnIndex(COLUMN_2))
                     cadastro.name = cursor.getString(cursor.getColumnIndex(COLUMN_3))
                     cadastro.hour = cursor.getString(cursor.getColumnIndex(COLUMN_4))
+                    cadastro.day = cursor.getString(cursor.getColumnIndex(COLUMN_5))
+
                     cadastros.add(cadastro)
                 }while (cursor.moveToNext())
 
@@ -141,12 +145,13 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
 
     companion object{
         const val DATABASE_NAME = "agend.db"
-        const val DATABASE_VERSION = 1
+        const val DATABASE_VERSION = 2
         const val TABLE_NAME = "table_agend"
         const val COLUMN_1 = "ID"
         const val COLUMN_2 = "TYPE"
         const val COLUMN_3 = "NAME"
         const val COLUMN_4 = "HOUR"
+        const val COLUMN_5 = "DAY"
         const val TYPE_SCHEDULE = "client"
         private var INSTANCE : DataBaseHelper? = null
 
@@ -156,7 +161,7 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
             return INSTANCE
         }
 
-        class Cadastro (var id: Int = 0 , var type: String? = null, var name: String? = null, var hour: String? = null)
+        class Cadastro (var id: Int = 0 , var type: String? = null, var name: String? = null, var hour: String? = null, var day: String? = null)
     }
 
 }

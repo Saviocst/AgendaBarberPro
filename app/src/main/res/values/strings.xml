@@ -19,11 +19,13 @@
     <string name="agedamento_error_db">Erro ao salvar o agendamento</string>
     <string name="list_agend_client">Agendamento</string>
     <string name="hora_clt">Hora</string>
-    <string name="hour_client">Hora:</string>
+    <string name="day_week">Dia:</string>
     <string name="name_clt">Nome:</string>
     <string name="sim">Sim</string>
     <string name="nao">Não</string>
     <string name="agenda_barber">Agenda Barber Pro</string>
+    <string name="day">Dia:</string>
+    <string name="hour_client">Hora:</string>
 
 
 </resources>

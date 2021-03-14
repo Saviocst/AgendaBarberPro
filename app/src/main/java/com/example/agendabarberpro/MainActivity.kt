@@ -16,13 +16,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //setSupportActionBar(toolbar)
-
-        /*setSupportActionBar(toolbar)
-        if (supportActionBar != null){
-            supportActionBar?.setDisplayHomeAsUpEnabled(true)
-            supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_sv)
-        }*/
 
         cardAgendar = findViewById(R.id.card_view_agendar)
         cardSair = findViewById(R.id.card_view_sair)

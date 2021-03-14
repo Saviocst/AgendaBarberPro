@@ -9,7 +9,7 @@ import com.example.agendabarberpro.model.EventClick
 
 class MainAdapter (private val data: List<DataBaseHelper.Companion.Cadastro>, private var listner: EventClick) : RecyclerView.Adapter<MainViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.lista_agenda_personalizada, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.list_custom_sv, parent, false)
         return MainViewHolder(view)
     }
 
