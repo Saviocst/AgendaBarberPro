@@ -4,14 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ListActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/lista_recycler_agenda"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:listitem="@layout/list_custom_sv"
-        tools:itemCount="3"/>
+        android:layout_height="wrap_content"
+        android:background="@drawable/toolbar_style_2"
+        app:title="@string/agenda_barber"
+        app:titleTextColor="@color/white"
+        android:backgroundTint="@color/orange_sv_logo"
+        android:layout_margin="4dp"
+        android:elevation="3dp"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        tools:ignore="UnusedAttribute" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/lista_recycler_agenda"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:itemCount="3"
+            tools:listitem="@layout/list_custom_sv" />
+
+    </LinearLayout>
 
     <!-- simple_list_item_1 -->
 
