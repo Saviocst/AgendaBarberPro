@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/orange_sv_logo"
     android:orientation="vertical"
     tools:context=".ListActivity">
 
@@ -11,11 +12,9 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/toolbar_style_2"
+        android:background="@drawable/toolbar_style"
         app:title="@string/agenda_barber"
-        app:titleTextColor="@color/white"
-        android:backgroundTint="@color/orange_sv_logo"
-        android:layout_margin="4dp"
+        app:titleTextColor="@color/orange_sv_logo"
         android:elevation="3dp"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
@@ -24,7 +23,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/draw_custom_sv">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/lista_recycler_agenda"
@@ -34,7 +34,5 @@
             tools:listitem="@layout/list_custom_sv" />
 
     </LinearLayout>
-
-    <!-- simple_list_item_1 -->
 
 </LinearLayout>
